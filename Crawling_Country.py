@@ -9,16 +9,17 @@ import warnings
 
 countrySearch = requests.get("https://www.0404.go.kr/dev/country.mofa?idx=&hash=&chkvalue=no2&stext=&group_idx=&alert_level=0")
 country = BeautifulSoup(countrySearch.text, "html.parser")
-countryData = country.find('div', 'country_stage_box')
-countryData = countryData.find_all('a')
+overallData = country.find('div', 'country_stage_box')
+overallData = overallData.find_all('li')
+print(overallData)
 
 with warnings.catch_warnings(record=True):
     warnings.simplefilter("always")
     df = pd.read_excel('국내총생산_20220605154742.xlsx', engine = 'openpyxl')
 
 
-for j in countryData:
-    word = j.get_text()
+for j in overallData:
+    word = j.find('a').get_text()
     print(word)
     if(word == '가이아나공화국'):
         word = '가이아나'
@@ -45,6 +46,11 @@ for j in countryData:
         Capital = BeautifulSoup(CapitalSearch.text, "html.parser")
         Capitaldata = Capital.find("dl", "info_naflag").find('a')
         print(Capitaldata.get_text())
+
+    safety = j.find_all('strong')
+    for k in safety:
+        grade = k.find("img")['alt']
+    print(grade)
 
     if(word == '남수단'):
         print(12000)
