@@ -108,6 +108,13 @@ for j in countryData:
         print(gdp)
 
 
+    quantityOfSearchUrl = 'http://n-keyword.com/?keyword=' + word
+    QOSSearch = requests.get(quantityOfSearchUrl)
+    QOS = BeautifulSoup(QOSSearch.text, "html.parser")
+    QOSdata1 = QOS.find_all("p", "pcCount")
+    QOSdata2 = QOS.find_all("p", "mobileCount")
+    QOSSUM = int(QOSdata1[1].get_text().replace(',','')) + int(QOSdata2[1].get_text().replace(',',''))
+    print(QOSSUM)
     
 
 
