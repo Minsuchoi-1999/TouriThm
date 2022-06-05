@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
-array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
-
-def quick_sort(array):
+def quick_sort_ascending(array):
     if len(array) <= 1:
         return array
 
@@ -12,6 +10,25 @@ def quick_sort(array):
     left_side = [x for x in tail if x <= pivot] 
     right_side = [x for x in tail if x > pivot]
 
-    return quick_sort(left_side) + [pivot] + quick_sort(right_side)
+    return quick_sort_ascending(left_side) + [pivot] + quick_sort_ascending(right_side)
 
-print(quick_sort(array))
+def quick_sort_descending(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0] 
+    tail = array[1:] 
+
+    left_side = [x for x in tail if x > pivot] 
+    right_side = [x for x in tail if x <= pivot]
+
+    return quick_sort_descending(left_side) + [pivot] + quick_sort_descending(right_side)
+
+
+print("input numbers to sort")
+array=list(map(int,input().split()))
+
+if input("ascending or descneding? (a/d) ")=="a":
+    print(quick_sort_ascending(array))
+else:
+    print(quick_sort_descending(array))
