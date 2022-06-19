@@ -15,6 +15,7 @@ import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 from df import sort 
+from es import input_data, make_index
 
 totallist = []
 worldlist = []
@@ -257,6 +258,7 @@ with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
 #        t.start()
 #        threads.append(t)
 
+input_data(totallist)
 
-while(True):
-    sort(totallist)
+#while(True):
+#    sort(totallist)
