@@ -14,6 +14,7 @@ from transformers import pipeline
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+from df import sort 
 
 totallist = []
 worldlist = []
@@ -256,6 +257,6 @@ with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
 #        t.start()
 #        threads.append(t)
 
-df = pd.DataFrame(totallist)
-index = worldlist
-print(df)
+
+while(True):
+    sort(totallist)
