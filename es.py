@@ -22,8 +22,8 @@ def input_data(database):
         gpa = data[3]
         search = data[4]
         traffic = data[5]
-
-        data_to_insert = {'국가' : country,'수도': city,'치안' : safety, '물가' : gpa, '최근검색량': search, '교통' : traffic}
+        score = data[6]
+        data_to_insert = {'국가' : country,'수도': city,'치안' : safety, '물가' : gpa, '최근검색량': search, '교통' : traffic, '총점' : score}
         
         res=es.index(index='cities',document=data_to_insert)
 
