@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import pandas as pd 
+import csv
 from elasticsearch import Elasticsearch
 
 #data = {'국가' : [], '도시': [], '최근검색량': [], '물가': [], '기후':[], '교통':[], '치안':[], '총점':[]}
@@ -14,6 +15,12 @@ def input_data(database):
     es_host="http://localhost:9200"
     es=Elasticsearch(es_host)
     make_index(es,'cities')
+
+    f=open('data.csv','w',newline='')
+    wr=csv.writer(f)
+    wr.writerow(['국가','수도','치안','물가','검색량','교통','총점'])
+
+
     for data in database:
         print(data)
         country= data[0]
@@ -25,6 +32,9 @@ def input_data(database):
         score = data[6]
         data_to_insert = {'국가' : country,'수도': city,'치안' : safety, '물가' : gpa, '최근검색량': search, '교통' : traffic, '총점' : score}
         
+        wr.writerow([country,city,safety,gpa,search,traffic,score])
+        
+
         res=es.index(index='cities',document=data_to_insert)
 
 def delete_data(element):
@@ -34,6 +44,10 @@ def find_data(element):
     results = es.search(index='cities', body={"query":{'match':{'도시':element}}})
     for result in results['hits']['hits']:
         print(result['_source'])
+
+def csv_to_df():
+    df=pd.read_csv("data.csv",encoding='utf-8')
+    return df
 
 #while 1:
 #    number=int(input('1 : 입력, 2 : 삭제, 3: 검색, 4: 종료\n'))
@@ -50,6 +64,9 @@ def find_data(element):
 #        break
         
 if __name__ == "__main__":
-    totallist = [['한국', '서울', '안전', '1', '2', '3'],['미국', '워싱턴', '안전', '1', '2', '3']]
+    totallist = [['한국', '서울', '안전', '1', '2', '3','6'],['미국', '워싱턴', '안전', '4', '5', '6','15'],['중국','베이징','안전','7','8','9','24']]
     input_data(totallist)
+
+    new_df=csv_to_df()
+    print(new_df)
 
