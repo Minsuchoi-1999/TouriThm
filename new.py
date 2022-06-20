@@ -119,7 +119,17 @@ def collectEverything(j):
     for k in safety:
         grade = k.find("img")['alt']
         safetylist.append(grade)
-    locallist.append(safetylist)
+        if '여행유의' in safetylist:
+            score = 5
+        if '여행자제' in safetylist:
+            score = 4
+        if '출국권고' in safetylist:
+            score =3
+        if '특별여행주의보' in safetylist:
+            score =2
+        if '여행금지' in safetylist:
+            score =1
+    locallist.append(score)
 
     if(word == '남수단'):
         gdp = 12000
@@ -232,8 +242,8 @@ def collectEverything(j):
         Englishword = translator(word)
    
     locallist.append(collectTransportation(Englishword, grade))
-    if(len(locallist) <6):
-        print(locallist)
+    score = locallist[2]*100 + locallist[3]/10000 + locallist[4]/10000 + locallist[5]/10
+    locallist.append(score)
     totallist.append(locallist)
     worldlist.append(word)
 
@@ -259,6 +269,9 @@ with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
 #        threads.append(t)
 
 input_data(totallist)
+
+while(1):
+    sort(totallist)
 
 #while(True):
 #    sort(totallist)
