@@ -17,10 +17,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from df import sort 
 from es import input_data, make_index
 
-totallist = []
-worldlist = []
-MAXsize = 0
-current = 0
+import settings
 
 def translator(word):
     trans_Url = 'https://www.google.com/search?q='+ word +' 영어로'
@@ -56,7 +53,7 @@ def collectSearchNum(word):
     QOSSUM = int(QOSdata1[1].get_text().replace(',','')) + int(QOSdata2[1].get_text().replace(',',''))
     return QOSSUM
 
-def collectTransportation(Englishword, grade):
+def collectTransportation(Englishword, grade, sia):
     transportation_Url = 'https://en.wikivoyage.org/wiki/'+ Englishword
     transportation = requests.get(transportation_Url)
     trp = BeautifulSoup(transportation.text, "html.parser")
@@ -81,7 +78,7 @@ def collectTransportation(Englishword, grade):
 
     return round((score['pos']-score['neg'])*weight*100, 1)
 
-def collectEverything(j):
+def collectEverything(j,df, sia):
     locallist = []
     word = j.find('a').get_text()
     locallist.append(word)
@@ -241,37 +238,34 @@ def collectEverything(j):
     else:
         Englishword = translator(word)
    
-    locallist.append(collectTransportation(Englishword, grade))
+    locallist.append(collectTransportation(Englishword, grade,sia))
     score = locallist[2]*100 + locallist[3]/10000 + locallist[4]/10000 + locallist[5]/10
     locallist.append(score)
-    totallist.append(locallist)
-    worldlist.append(word)
+    settings.totallist.append(locallist)
 
-with warnings.catch_warnings(record=True):
-    warnings.simplefilter("always")
-    df = pd.read_excel('국내총생산_20220605154742.xlsx', engine = 'openpyxl')
+def update():
+    nltk.download('vader_lexicon')
+    sia = SentimentIntensityAnalyzer()
+    
+    overallData = collectingCountry()
+    
+    with warnings.catch_warnings(record=True):
+        warnings.simplefilter("always")
+        df = pd.read_excel('국내총생산_20220605154742.xlsx', engine = 'openpyxl')
+    
+    print("조금만 기다려주세요, 업데이트 중 입니다")
+    print(str(settings.current) + '/' +str(settings.MAXsize))
 
-nltk.download('vader_lexicon')
-sia = SentimentIntensityAnalyzer()
-
-overallData = collectingCountry()
-
-print("조금만 기다려주세요, 업데이트 중 입니다")
-print(str(current) + '/' +str(MAXsize))
-
-with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
-    for j in overallData:
-        print(str(current)+'/197:'+ str(round((current/197*100),1)) +'%',end='==')
-        MAXsize+=1
-        current+=1
-        collectEverything(j)
+    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executor:
+        for j in overallData:
+            print(str(settings.current)+'/197:'+ str(round((settings.current/197*100),1)) +'%',end='==')
+            settings.MAXsize+=1
+            settings.current+=1
+            collectEverything(j,df, sia)
 #        t.start()
 #        threads.append(t)
 
-input_data(totallist)
-
-while(1):
-    sort(totallist)
+    input_data(settings.totallist)
 
 #while(True):
 #    sort(totallist)
