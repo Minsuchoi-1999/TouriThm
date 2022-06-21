@@ -1,0 +1,69 @@
+* {
+    padding: 0;
+    margin: 0
+}
+
+li {
+    list-style: none
+}
+
+a {
+    text-decoration: none;
+    font-size: 14px
+}
+
+.logo {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 25px;
+}
+
+.menu {
+    width: 800px;
+    overflow: hidden;
+    margin: 150px auto;
+}
+
+.menu>li {
+    width: 20%;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    background-color: turquoise;
+}
+
+.menu a {
+    color: #fff;
+}
+
+.nav {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: turquoise;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 100px;
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+}
+
+.search {
+    width: 800px;
+    height: 500px;  
+    margin: 30px auto;
+}
+
+.search input {
+    width: 80%;
+    height: 60px;
+    font-size: 40px;
+    border: none;
+    border-bottom: 1px black solid;
+}
+
+.search button{
+    font-size: 40px;
+    padding : 0px 0px;
+}
