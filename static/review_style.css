@@ -4,9 +4,9 @@ body {
 
 .form {
     position: absolute;
-    width: 580px;
+    width: 800px;
     overflow: hidden;
-    margin: 0 0 0 -242px;
+    margin: 0 0 0 -380px;
     left: 50%;
     padding-bottom: 35px;
     z-index: 500;

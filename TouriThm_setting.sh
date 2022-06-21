@@ -11,7 +11,11 @@ pip install openpyxl
 pip install nltk
 pip install elasticsearch
 pip install flask
+pip install keras
+pip install Konlpy
+pip install tensorflow
+pip install transformers
+sudo apt-get install openjdk-11-jdk
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.2.0-linux-x86_64.tar.gz
 tar xvzf elasticsearch-8.2.0-linux-x86_64.tar.gz
-cd elasticsearch-8.2.0/
-./bin/elastic/search
+

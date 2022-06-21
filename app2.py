@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 
 from df import sort
-from es import csv_to_df
+from es import csv_to_df, find_data
 from new_prediction import sentiment_predict
 from new import update
 import settings
@@ -30,6 +30,19 @@ def post():
         return render_template("good.html")
     else:
         return render_template("bad.html")
+
+@app.route('/post3/', methods = ['POST'])
+def post3():
+    text = request.form.get('검색')
+    locallist = find_data(text)
+    value1 = locallist['국가']
+    value2 = locallist['수도']
+    value3 = locallist['치안']
+    value4 = locallist['물가']
+    value5 = locallist['최근검색량']
+    value6 = locallist['교통']
+    value7 = locallist['총점']
+    return render_template("search.html", value1= value1, value2 = value2, value3 = value3, value4 = value4, value5 = value5, value6 = value6, value7 = value7)
 
 @app.route('/post2/', methods = ['POST'])
 def post2():

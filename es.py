@@ -41,9 +41,22 @@ def delete_data(element):
     es.indices.delete(index='cities',body={"query":{'match':{'도시':element}}})
 
 def find_data(element):
-    results = es.search(index='cities', body={"query":{'match':{'도시':element}}})
+    es_host="http://localhost:9200"
+    es=Elasticsearch(es_host)
+    
+    condic = {}
+
+    results = es.search(index='cities', body={"query":{'match':{'국가':element}}})
+    
     for result in results['hits']['hits']:
-        print(result['_source'])
+        condic = result['_source']
+    if(len(condic)==0):
+        results = es.search(index='cities', body={"query":{'match':{'수도':element}}})
+        for result in results['hits']['hits']:
+            condic = result['_source']
+    print(condic)
+    return condic
+
 
 def csv_to_df():
     df=pd.read_csv("data.csv",encoding='utf-8')
