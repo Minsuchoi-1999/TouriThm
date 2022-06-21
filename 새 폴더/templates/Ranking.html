@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD// HTML 4.0 Transitional//En">
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="TouriThm">
+        <title>Ranking</title>
+        <link rel="stylesheet"  href="{{url_for('static', filename='review_style.css')}}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+    
+        <style>
+          * {
+            padding: 0;
+            margin: 0
+        }
+
+        .logo {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 25px;
+        }
+        .menu {
+            width: 800px;
+            overflow: hidden;
+            margin: 150px auto;
+        }
+
+        .menu>li {
+            width: 20%;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            background-color: turquoise;
+            list-style:none;
+        }
+
+        .menu a {
+            color: #fff;
+            text-decoration-line: none
+        }
+
+        .nav {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            background-color: turquoise;
+            margin-bottom : 30px;
+        }
+
+        .select {
+            padding: 15px 10px;
+        }
+        .select input[type=radio]{
+            display: none;
+        }
+        .select input[type=radio]+label{
+            display: inline-block;
+            cursor: pointer;
+            height: 24px;
+            width: 90px;
+            border: 1px solid #333;
+            line-height: 24px;
+            text-align: center;
+            font-weight:bold;
+            font-size:13px;
+        }
+        .select input[type=radio]+label{
+            background-color: #fff;
+            color: #333;
+        }
+        .select input[type=radio]:checked+label{
+            background-color: #333;
+            color: #fff;
+        }
+        .dataframe{
+            margin-top : 280px;
+            width : 60%;
+            margin-left : auto;
+            margin-right : auto;
+            background-color: white;
+            box-shadow: 0px 18px 16px -4px #03c75a;
+        }
+        body {
+            background-image: url("https://blogger.googleusercontent.com/img/a/AVvXsEhNWY3g7m1xUF8-8Qd1GLGejeI1pXYxZKKxf3npRw1j7sbjvGDN5RA7SEN0LPCLX7BX4esvOGKS0ZvddikUj339jK_t-zxVsExRKowO2hl2w0Wc1Cye2P7WuIXIC2SAAJPcCv3u5YffNtteO73kZYJIEowZTOg13pa9fy_xmm9hCkbSGUVswts1sTKbWQ");
+            background-size :cover;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div class="nav">
+    
+            <ul class="menu">
+                <li>
+                    <a href={{url_for('index')}} class="logo">TouriThm</a>
+                </li>
+                <li>
+                    <a href={{url_for('hello')}}>TouriThm이란?</a>
+                </li>
+                <li>
+                    <a href={{url_for('Ranking')}}>여행지 랭킹</a>
+                </li>
+                <li>
+                    <a href={{url_for('review')}}>서비스 리뷰</a>
+                </li>
+                <li>
+                    <a href={{url_for('ready')}}>업데이트</a>
+                </li>
+            </ul>
+        </div>
+    
+        <div class="form">
+            <strong class="form_title">정렬 조건</strong>
+    
+            <div class="form_inner">
+                <form action = '/post2' method = "post">
+                <div class="select">
+                    <div class="choice_box">
+                        <input type="radio" value = "국가" id="select1" name="design1"><label for="select1">국가</label>
+                        <input type="radio"  value = "수도" id="select2" name="design2"><label for="select2">수도</label>
+                        <input type="radio"  value = "치안" id="select3" name="design3"><label for="select3">치안</label>
+                        <input type="radio" value = "물가" id="select4" name="design4"><label for="select4">물가</label>
+                        <input type="radio" value = "검색량" id="select5" name="design5"><label for="select5">검색량</label>
+                        <input type="radio" value = "교통" id="select6" name="design6"><label for="select6">교통</label>
+                        <input type="radio" value = "총점" id="select7" name="design7"><label for="select7">총점</label>
+                    </div>
+                </div>
+                
+                <div class="select">
+                    <div class="choice_box">
+                        <input type="radio" value= "오름차순" id="select8" name="function1"><label for="select8">오름차순</label>
+                        <input type="radio" value = "내림차순" id="select9" name="function2"><label for="select9">내림차순</label>
+                    </div>
+                </div>
+                    <div class="form_footer">
+                        <div class="btn_box">
+                            <div class="box_inner">
+                                <button onclick ="btn()" id="pointAddButton"  class="btn_complete">확인</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class = 'main'>    
+            {% for table in tables %}
+                {{titles[loop.index]}}
+                {{ table|safe }}
+            {% endfor %}
+        </div>
+    </body>
+
+</html>
