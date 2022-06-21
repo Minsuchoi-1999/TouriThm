@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD// HTML 4.0 Transitional//En">
+
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewpoint" content = "width=device-width">
+        <title>Introduce</title>
+        <link rel="stylesheet"  href="{{url_for('static', filename='style.css')}}" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0
+            }
+
+            .logo {
+                font-family: 'Roboto Mono', monospace;
+                font-size: 25px;
+            }
+
+            body {
+                background-image: url("https://cdn.pixabay.com/photo/2018/03/05/13/47/sea-3200821_1280.jpg");
+                background-size :cover;
+            }
+            .hometitle1{
+                margin-top : 90px;
+                text-align : center;
+                -webkit-text-stroke: 2px black;
+                color: #fff;
+                font-style: normal;
+                font-weight: 900;
+                font-size: 70px;
+            }
+
+            .hometitle2{
+                font-size: 22px;
+                margin: 90px 0;    
+                text-align: justify;
+                width: 100%;
+            }
+
+            .naming{
+                text-align : center;
+                margin : 0 auto;
+                width: 100%;
+                height: 40vh;
+                color: #fff;
+                background-color: transparent;
+                /* background: url(/imagenes/starfield-background-1464.png); */
+                background-size: 400% 400%;
+                position: relative; 
+            }
+
+            .menu {
+                width: 800px;
+                overflow: hidden;
+                margin: 150px auto;
+            }
+
+            .menu>li {
+                width: 20%;
+                float: left;
+                text-align: center;
+                line-height: 40px;
+                background-color: turquoise;
+            }
+
+            .update {
+                list-style: none;
+                text-align: center;
+            }
+
+            .update>li {
+                width: 20%;
+                text-align: center;
+                line-height: 40px;
+                background-color: turquoise;
+                display: inline-block;
+            }
+
+            .update a {
+                color: #fff;
+                text-decoration-line: none;
+            }
+            .menu a {
+                color: #fff;
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            .nav {
+                height: 50px;
+                display: flex;
+                align-items: center;
+                background-color: turquoise;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="nav">
+
+            <ul class="menu">
+                <li>
+                    <a href={{url_for('index')}} class="logo">TouriThm</a>
+                </li>
+                <li>
+                    <a href={{url_for('hello')}}>TouriThm이란?</a>
+                </li>
+                <li>
+                    <a href={{url_for('Ranking')}}>여행지 랭킹</a>
+                </li>
+                <li>
+                    <a href={{url_for('review')}}>서비스 리뷰</a>
+                </li>
+                <li>
+                    <a href={{url_for('ready')}}>업데이트</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class = "naming">
+            <div class = "hometitle1">
+                1. 환경설정
+            </div>
+
+            <div class = "hometitle2">
+                <center>
+                    1. TouriThm_setting.sh를 실행해주세요<br><br>
+                    2. 대부분은 모두 자동으로 설정되었지만, 수동으로 해주셔야하는 것들이 있습니다.<br><br>
+                    3. sudo vi /etc/profile을 입력해주세요.<br><br>
+                    4. export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64를 입력해 자바 PATH를 설정해주세요. <br><br>
+                    5. cd elasticsearch-8.2.0/를 입력해주세요.<br><br>
+                    6. vi config/elasticsearch.yml을 입력해주세요.<br><br>
+                    7. xpack.security.enabled: false, network.host: 0.0.0.0으로 설정해주세요.<br><br>
+                </center>
+            </div>
+
+            <div class = "hometitle1">
+                2. 업데이트<br><br>
+            </div>
+            <ul class="update"><li>
+                <a href={{url_for('Updating')}}>UPDATE</a>
+            </li>
+        </ul>
+            <div class = "hometitle2">
+                <center>
+                    1. 상단의 버튼을 눌러 진행해주세요.<br><br>
+                    2. 약 3분 정도가 소요됩니다. Flask를 끄지 말아주세요.<br><br>
+                    3. Flask 화면을 보면 얼마나 진행되는지 알 수 있습니다.<br><br>
+                </center>
+            </div>
+    </body>
+</html>

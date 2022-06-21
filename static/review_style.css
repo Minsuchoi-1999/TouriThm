@@ -1,0 +1,195 @@
+body {
+    background-color: gray;
+}
+
+.form {
+    position: absolute;
+    width: 580px;
+    overflow: hidden;
+    margin: 0 0 0 -242px;
+    left: 50%;
+    padding-bottom: 35px;
+    z-index: 500;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 7px 31px rgb(0, 0, 0 / 50%);
+}
+
+.form_title {
+    background-color: black;
+    color: white;   
+    display: block;
+    padding: 14px 19px 0;
+    height: 32px;
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.inner_title {
+    display: block;
+    padding-top: 30px;
+    line-height: 27px;
+    text-align: center;
+    color: black;
+    font-size: 22px;
+}
+
+.form .form_inner {
+    padding: 0 30px;
+}
+
+.form .form_inner .input_choice {
+    margin-top: 30px;
+    text-align: center;
+    border-top: 1px solid #ededed;
+}
+
+.form .form_inner .input_choice .input_tit {
+    display: block;
+    padding-top: 35px;
+    line-height: 19px;
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: -0.43px;
+}
+
+.form .form_inner .input_choice .choice_box {
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    left: -8px;
+    vertical-align: top;
+    margin-top: 20px;
+}
+
+.blind {
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
+
+.form .form_inner .input_choice .choice_box .choice_label {
+    display: block;
+    position: relative;
+    float: left;
+    margin-left: 8px;
+    width: 70px;
+    line-height: 38px;
+    color: #333;
+    font-size: 14px;
+    border: solid 1px #dadada;
+    border-radius: 5px;
+}
+
+.form .form_inner .input_choice .choice_box input.checked+.choice_label {
+    color: #ff3a45;
+    font-weight: bold;
+    border-color: #ff3a45;
+}
+
+.form .form_inner .input_choice .choice_box input.checked+.choice_label:after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 9px;
+    height: 7px;
+    background: url(https://ssl.pstatic.net/static/movie/2019/09/sp_ico3.png) no-repeat -131px -1013px;
+}
+
+
+.form .form_inner .input_request {
+    position: relative;
+    margin-top: 35px;
+    height: 114px;
+    border: solid 1px #d0d0d0;
+    background-color: #fbfcfd;
+}
+
+.form .form_inner .input_request .input_textarea {
+    padding: 13px 15px;
+    width: 443px;
+    height: 90px;
+    line-height: 19px;
+    border: 0;
+    font-size: 14px;
+    color: rgba(0, 0, 0, .3);
+    letter-spacing: -0.09px;
+    resize: none;
+    background: 0;
+}
+
+textarea, button {
+    -webkit-appearance: none;
+    -webkit-text-size-adjust: none;
+    margin: 0;
+    padding: 0;
+}
+
+.form .form_footer {
+    margin-top: 35px;
+    border-top: 1px solid #ededed;
+}
+
+.form .form_footer .check {
+    padding-top: 35px;
+    text-align: center;
+}
+
+.form .form_footer .check .notice_text {
+    display: inline-block;
+    line-height: 17px;
+    text-align: center;
+    color: #000;
+    font-weight: normal;
+    font-size: 14px;
+    letter-spacing: -0.38px;
+}
+
+.form .form_footer .btn_box {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.form .form_footer .btn_box .box_inner {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+}
+
+button {
+    cursor: pointer;
+}
+
+.form .form_footer .btn_box .box_inner button {
+    float: left;
+    width: 120px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 15px;
+    letter-spacing: -0.41px;
+}
+
+.form .form_footer .btn_box .box_inner .btn_complete {
+    margin-left: 5px;
+    color: #fff;
+    font-weight: 500;
+    border: solid 1px #ff5257;
+    background-color: #ff5257;
+}
+
+.form .form_footer .btn_box .box_inner .btn_cancel {
+    color: #333;
+    font-weight: 500;
+    border: solid 1px #c3c3c3;
+    background-color: #fff;
+}
