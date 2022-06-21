@@ -15,13 +15,15 @@ import pandas as pd
 #    df = df.append(data_to_insert, ignore_index=True)
     
 
-def sort(datas):
-    df=pd.DataFrame(datas,columns = ['국가', '수도', '치안', '물가', '검색량', '교통', '총점'])
-    value=input('정렬할 기준 입력: 0.국가/ 1.수도/ 2.치안/ 3.물가/ 4.검색량/ 5.교통 /6 총점')
-    sorted=df.sort_values(by=value,ascending=False)
-    print(sorted.head())
-    sorted=df.sort_values(by=value,ascending=True)
-    print(sorted.head())
+def sort(df, value, value2):
+    if(value2 == "오름차순"):
+        sorted=df.sort_values(by=value,ascending=False)
+    else:
+        sorted=df.sort_values(by=value,ascending=True)
+    #print(sorted.head())
+   # sorted=df.sort_values(by=value,ascending=True)
+    #print(sorted.head())
+    return sorted
 
 if __name__ == "__main__":
     print()

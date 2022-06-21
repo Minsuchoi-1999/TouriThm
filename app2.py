@@ -31,6 +31,32 @@ def post():
     else:
         return render_template("bad.html")
 
+@app.route('/post2/', methods = ['POST'])
+def post2():
+    df=csv_to_df()
+    selected1 =''
+    selected2 =''
+    if(request.form.get('design1')):
+        selected1 = '국가'
+    elif(request.form.get('design2')):
+        selected1 = '수도'
+    elif(request.form.get('design3')):
+        selected1 = '치안'
+    elif(request.form.get('design4')):
+        selected1 = '물가'
+    elif(request.form.get('design5')):
+        selected1 = '검색량'
+    elif(request.form.get('design6')):
+        selected1 = '교통'
+    elif(request.form.get('design7')):
+        selected1 = '총점'
+    if(request.form.get('function1')):
+        selected2 = '오름차순'
+    elif(request.form.get('function2')):
+        selected2 = '내림차순'
+                     
+    df = sort(df, selected1, selected2)
+    return render_template('Ranking.html', tables=[df.to_html()], titles=df.columns.values)
 @app.route('/review/')
 def review():
     return render_template("review.html")
@@ -39,7 +65,7 @@ def review():
 @app.route('/Ranking/')
 def Ranking():
     df= csv_to_df()
-    df = sort(df, '총점')
+    df = sort(df, '총점','오름차순')
     return render_template('Ranking.html',  tables=[df.to_html()], titles=df.columns.values)
 
 @app.route('/ready')
